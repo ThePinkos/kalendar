@@ -29,7 +29,7 @@ function vytvorArrayVsetkeho(year, start, end) {
     const month = velkePismeno(currentDate.toLocaleDateString('sk-SK', { month: 'long' }))
     const oyear = currentDate.toLocaleDateString('sk-SK', { year: 'numeric' })
 
-    kalendarArray.push([dayNumber, dayInfo, month, oyear, meninyArray[i - 1], i])
+    kalendarArray.push([dayNumber, dayInfo, month, oyear, meninyArray[i - 1], i, sviatkyArray[i]])
   }
 
   return kalendarArray
