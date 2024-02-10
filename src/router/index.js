@@ -9,9 +9,10 @@ const routes = [
     component: Home
   },
   {
-    path: '/kalendar',
+    path: '/kalendar/:id',
     name: 'kalendar',
-    component: Kalendar
+    component: Kalendar,
+    props: (route) => ({ id: route.params.id })
   }
 ]
 

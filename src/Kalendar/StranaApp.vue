@@ -16,7 +16,8 @@
           <div class="info">
             {{ generate[1].at(den - 7 + strana * 7 - 1) }}
             {{ generate[4].at(den - 7 + strana * 7 - 1) }} --
-            {{ generate[5].at(den - 7 + strana * 7 - 1) }}
+            {{ generate[5].at(den - 7 + strana * 7 - 1) }} ---
+            {{ generate[6].at(den - 7 + strana * 7 - 1) }}
           </div>
         </div>
         <div class="den vikend" v-for="den in 2" :key="den">
@@ -24,7 +25,8 @@
           <div class="info">
             {{ generate[1].at(5 + (den - 7 + strana * 7 - 1)) }}
             {{ generate[4].at(5 + (den - 7 + strana * 7 - 1)) }} --
-            {{ generate[5].at(5 + (den - 7 + strana * 7 - 1)) }}
+            {{ generate[5].at(5 + (den - 7 + strana * 7 - 1)) }} ---
+            {{ generate[6].at(5 + (den - 7 + strana * 7 - 1)) }}
           </div>
         </div>
       </div>
@@ -41,9 +43,10 @@ import { kalendar } from './Dni.js'
 export default {
   computed: {
     generate() {
-      return kalendar(2024)
+      return kalendar(this.id)
     }
-  }
+  },
+  props: ['id'],
 }
 </script>
 

@@ -1,12 +1,11 @@
 export function sviatky(pocetDni) {
-    const sviatkyList = []
+  const sviatkyList = []
 
-    sviatkyList[1 - 1] = "Vznik slovenskej republiky"
+    sviatkyList[pocetDni - (pocetDni - 1)] = 'novy rok'
+    sviatkyList[pocetDni] = 'silvester'
 
-    if (pocetDni === 365) {
-        return sviatkyList.filter((x) => x !== 'Radomír')
-      } else pocetDni === 366
-      {
-        return sviatkyList
-      }
+
+  return sviatkyList
 }
+
+console.log(sviatky(366))
