@@ -7,5 +7,3 @@ export function sviatky(pocetDni) {
 
   return sviatkyList
 }
-
-console.log(sviatky(366))

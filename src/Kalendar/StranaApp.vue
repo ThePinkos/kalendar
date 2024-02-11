@@ -7,26 +7,24 @@
       <!-- TYZDEN -->
       <div class="tyzden">
         <div class="tyzden_info">
-          <div>{{ generate[2].at((strana - 1) * 7) }} {{ generate[3].at((strana - 1) * 7) }}</div>
-          <div>{{ strana }}. týždeň</div>
+          <div>{{ generate[5].at((strana - 1) * 7) }} {{ generate[4].at((strana - 1) * 7) }}</div>
+          <div>{{ generate[3].at((strana - 1) * 7) }}. týždeň</div>
         </div>
 
         <div class="den" v-for="den in 5" :key="den">
           <div class="datum">{{ generate[0].at(den - 7 + strana * 7 - 1) }}</div>
           <div class="info">
             {{ generate[1].at(den - 7 + strana * 7 - 1) }}
-            {{ generate[4].at(den - 7 + strana * 7 - 1) }} --
-            {{ generate[5].at(den - 7 + strana * 7 - 1) }} ---
-            {{ generate[6].at(den - 7 + strana * 7 - 1) }}
+            {{ generate[6].at(den - 7 + strana * 7 - 1) }} --
+            {{ generate[2].at(den - 7 + strana * 7 - 1) }}
           </div>
         </div>
         <div class="den vikend" v-for="den in 2" :key="den">
           <div class="datum">{{ generate[0].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
           <div class="info">
             {{ generate[1].at(5 + (den - 7 + strana * 7 - 1)) }}
-            {{ generate[4].at(5 + (den - 7 + strana * 7 - 1)) }} --
-            {{ generate[5].at(5 + (den - 7 + strana * 7 - 1)) }} ---
-            {{ generate[6].at(5 + (den - 7 + strana * 7 - 1)) }}
+            {{ generate[6].at(5 + (den - 7 + strana * 7 - 1)) }} --
+            {{ generate[2].at(5 + (den - 7 + strana * 7 - 1)) }}
           </div>
         </div>
       </div>
@@ -38,7 +36,7 @@
 </template>
 
 <script>
-import { kalendar } from './Dni.js'
+import { kalendar } from './InfoTyzden.js'
 
 export default {
   computed: {
@@ -46,7 +44,7 @@ export default {
       return kalendar(this.id)
     }
   },
-  props: ['id'],
+  props: ['id']
 }
 </script>
 
@@ -67,7 +65,7 @@ export default {
   font-size: 0.5cm;
   color: white;
 
-  font-family: Tahoma, system-ui;
+  font-family: system-ui;
   font-weight: bold;
   letter-spacing: 0.3mm;
 
