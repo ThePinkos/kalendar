@@ -1,5 +1,5 @@
 import { meniny } from './Meniny.js'
-import { sviatky } from './Sviatky.js'
+//import { sviatky } from './Sviatky.js'
 
 function doplnTzyden(x) {
   const mappings = { 1: 7, 2: 8, 3: 9, 4: 10, 5: 11, 6: 12, 0: 13 }
@@ -47,21 +47,29 @@ function getMonthName(date) {
   return monthName
 }
 
-function getYear(date) {
-  var yearArray = date.getFullYear()
+function getYear(year) {
+  var yearArray = []
+  var nextYear = year - (-1)
+  var beforeYear = year - 1
+
+  for (let i = 0; i <= 54; i++) {
+    var yearNumber = new Date(year, 0, i * 7).getFullYear()
+    yearArray.push(yearNumber)
+  }
+
+  if (new Date(year, 0, 1).getDay() === 1) {
+    yearArray[1] = year
+  } else {
+    yearArray[1] = beforeYear + '/' + year
+  }
+
+  if (new Date(year, 11, 31).getDay() === 0) {
+    yearArray[53] = year
+  } else {
+    yearArray[53] = year + '/' + nextYear
+  }
 
   return yearArray
-}
-
-function sviatkyArray(year) {
-  const last10Indexes = sviatky(year - 1).slice(-doplnTzyden(new Date(year, 0, 1).getDay()))
-  const first10Indexes = sviatky(year + 1).slice(
-    0,
-    20 - doplnTzyden(new Date(year, 11, 31).getDay())
-  )
-  const resultArray = [...last10Indexes, ...meniny(year), ...first10Indexes]
-
-  return resultArray
 }
 
 function meninyArray(year) {
@@ -78,7 +86,6 @@ function meninyArray(year) {
 // Example usage:
 export function kalendar(year) {
   let infoArray = []
-  const sviatkyArray = sviatky(getMaxDays(year))
 
   const start = 1 - doplnTzyden(new Date(year, 0, 1).getDay())
   const end = getMaxDays(year) + 20 - doplnTzyden(new Date(year, 11, 31).getDay())
@@ -92,20 +99,13 @@ export function kalendar(year) {
     var dayNumberInMonth = getDayNumberInMonth(zaciatok)
     var monthName = getMonthName(zaciatok)
     monthName = monthName[0].toUpperCase() + monthName.slice(1)
-    var yearNumber = getYear(zaciatok)
 
-    infoArray.push([
-      dayNumberInMonth,
-      weekdaySlovak,
-      dayNumber,
-      weekNumber,
-      monthName,
-      yearNumber,
-    ])
+    infoArray.push([dayNumberInMonth, weekdaySlovak, dayNumber, weekNumber, monthName])
   }
 
   infoArray = infoArray[0].map((_, index) => infoArray.map((arr) => arr[index]))
   infoArray.push(meninyArray(year))
+  infoArray.push(getYear(year))
 
   return infoArray
 }

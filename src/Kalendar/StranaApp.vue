@@ -7,7 +7,7 @@
       <!-- TYZDEN -->
       <div class="tyzden">
         <div class="tyzden_info">
-          <div>{{ generate[5].at((strana - 1) * 7) }} {{ generate[4].at((strana - 1) * 7) }}</div>
+          <div>{{ generate[6].at(strana - 1) }} {{ generate[4].at((strana - 1) * 7) }}</div>
           <div>{{ generate[3].at((strana - 1) * 7) }}. týždeň</div>
         </div>
 
