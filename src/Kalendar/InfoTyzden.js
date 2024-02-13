@@ -40,11 +40,27 @@ function getDayNumberInMonth(date) {
   return dayOfMonth
 }
 
-function getMonthName(date) {
-  var options = { month: 'long' }
-  var monthName = date.toLocaleString('sk-SK', options)
+function getMonthName(year) {
+  var monthArray = [];
 
-  return monthName
+  for (let i = -1; i < 54; i++) {
+    let firstDay = new Date(year, 0, i * 7 + 1);
+    let lastDay = new Date(year, 0, i * 7 + 7);
+
+    let firstMonth = firstDay.toLocaleDateString("sk-SK", { month: "long" });
+    let lastMonth = lastDay.toLocaleDateString("sk-SK", { month: "long" });
+
+    firstMonth = firstMonth[0].toUpperCase() + firstMonth.slice(1);
+    lastMonth = lastMonth[0].toUpperCase() + lastMonth.slice(1);
+
+    if (firstMonth !== lastMonth) {
+      monthArray.push(firstMonth + '/' + lastMonth);
+    } else {
+      monthArray.push(firstMonth);
+    }
+  }
+
+  return monthArray;
 }
 
 function getYear(year) {
@@ -57,8 +73,8 @@ function getYear(year) {
     yearArray.push(yearNumber)
   }
 
-  yearArray[1] = new Date(year, 0, 1).getDay() === 1 ? year : beforeYear + '/' + year;
-  yearArray[53] = new Date(year, 11, 31).getDay() === 0 ? year : year + '/' + nextYear;
+  yearArray[1] = new Date(year, 0, 1).getDay() === 1 ? year : beforeYear + '/' + year.toString().slice(-2);
+  yearArray[53] = new Date(year, 11, 31).getDay() === 0 ? year : year + '/' + nextYear.toString().slice(-2);
 
   return yearArray
 }
@@ -88,13 +104,12 @@ export function kalendar(year) {
     var weekNumber = getWeekNumber(zaciatok)
     var dayNumber = getDayNumber(zaciatok)
     var dayNumberInMonth = getDayNumberInMonth(zaciatok)
-    var monthName = getMonthName(zaciatok)
-    monthName = monthName[0].toUpperCase() + monthName.slice(1)
 
-    infoArray.push([dayNumberInMonth, weekdaySlovak, dayNumber, weekNumber, monthName])
+    infoArray.push([dayNumberInMonth, weekdaySlovak, dayNumber, weekNumber])
   }
 
   infoArray = infoArray[0].map((_, index) => infoArray.map((arr) => arr[index]))
+  infoArray.push(getMonthName(year))
   infoArray.push(meninyArray(year))
   infoArray.push(getYear(year))
 

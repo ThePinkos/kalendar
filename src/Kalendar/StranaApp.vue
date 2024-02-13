@@ -8,7 +8,7 @@
       <!-- TYZDEN -->
       <div class="tyzden">
         <div class="tyzden_info">
-          <div>{{ generate[6].at(strana - 1) }} {{ generate[4].at((strana - 1) * 7) }}</div>
+          <div>{{ generate[6].at(strana - 1) }} {{ generate[4].at(strana - 1) }}</div>
           <div>{{ generate[3].at((strana - 1) * 7) }}. týždeň</div>
         </div>
 
@@ -18,6 +18,7 @@
             {{ generate[1].at(den - 7 + strana * 7 - 1) }}
             {{ generate[6].at(den - 7 + strana * 7 - 1) }} --
             {{ generate[2].at(den - 7 + strana * 7 - 1) }}
+            {{ generate[5].at(den - 7 + strana * 7 - 1) }}
           </div>
         </div>
         <div class="den vikend" v-for="den in 2" :key="den">
@@ -26,6 +27,7 @@
             {{ generate[1].at(5 + (den - 7 + strana * 7 - 1)) }}
             {{ generate[6].at(5 + (den - 7 + strana * 7 - 1)) }} --
             {{ generate[2].at(5 + (den - 7 + strana * 7 - 1)) }}
+            {{ generate[5].at(5 + (den - 7 + strana * 7 - 1)) }}
           </div>
         </div>
       </div>
@@ -77,7 +79,7 @@ export default {
 }
 
 .strana {
-  width: 13cm;
+  width: 12.5cm;
   height: 40cm;
   padding: 1cm;
   outline: 0.7mm dashed black;
@@ -119,7 +121,7 @@ export default {
   height: 3cm;
 
   display: grid;
-  grid-template-columns: 10% calc(90%);
+  grid-template-columns: 12% calc(88%);
 }
 
 .datum {
