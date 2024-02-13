@@ -115,8 +115,6 @@ export function kalendar(year) {
   infoArray.push(meninyArray(year))
   infoArray.push(getYear(year))
 
-  console.log(start)
-
   return infoArray
 }
 

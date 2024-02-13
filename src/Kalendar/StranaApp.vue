@@ -15,8 +15,7 @@
         <div class="den" v-for="den in 5" :key="den">
           <div class="datum">{{ generate[0].at(den - 7 + strana * 7 - 1) }}</div>
           <div class="info">
-            {{ generate[1].at(den - 7 + strana * 7 - 1) }}
-            {{ generate[6].at(den - 7 + strana * 7 - 1) }} --
+            {{ generate[1].at(den - 7 + strana * 7 - 1) }} --
             {{ generate[2].at(den - 7 + strana * 7 - 1) }}
             {{ generate[5].at(den - 7 + strana * 7 - 1) }}
           </div>
@@ -24,8 +23,7 @@
         <div class="den vikend" v-for="den in 2" :key="den">
           <div class="datum">{{ generate[0].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
           <div class="info">
-            {{ generate[1].at(5 + (den - 7 + strana * 7 - 1)) }}
-            {{ generate[6].at(5 + (den - 7 + strana * 7 - 1)) }} --
+            {{ generate[1].at(5 + (den - 7 + strana * 7 - 1)) }} --
             {{ generate[2].at(5 + (den - 7 + strana * 7 - 1)) }}
             {{ generate[5].at(5 + (den - 7 + strana * 7 - 1)) }}
           </div>
