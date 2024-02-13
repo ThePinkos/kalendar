@@ -57,17 +57,8 @@ function getYear(year) {
     yearArray.push(yearNumber)
   }
 
-  if (new Date(year, 0, 1).getDay() === 1) {
-    yearArray[1] = year
-  } else {
-    yearArray[1] = beforeYear + '/' + year
-  }
-
-  if (new Date(year, 11, 31).getDay() === 0) {
-    yearArray[53] = year
-  } else {
-    yearArray[53] = year + '/' + nextYear
-  }
+  yearArray[1] = new Date(year, 0, 1).getDay() === 1 ? year : beforeYear + '/' + year;
+  yearArray[53] = new Date(year, 11, 31).getDay() === 0 ? year : year + '/' + nextYear;
 
   return yearArray
 }

@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="main">
+    <div class="strana uvodna">Rok {{ generate[6].at(10) }}</div>
     <div class="strana" v-for="strana in 55" :key="strana">
       <!-- FOTKA -->
       <div class="fotka"></div>
@@ -49,13 +50,40 @@ export default {
 </script>
 
 <style scoped>
+
 /* CAST STRANA */
+.main {
+  display: grid;
+  grid-template-columns: 15cm 15cm;
+  grid-auto-flow: dense;
+  gap: 0;
+}
+
+.main > div:nth-child(-n + 28) {
+  grid-column: 1;
+}
+
+.main > div:nth-child(n + 29) {
+  grid-column: 2;
+}
+
+.uvodna {
+  font-family: system-ui;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: 400%;
+  font-weight: bold;
+}
+
 .strana {
   width: 13cm;
   height: 40cm;
   padding: 1cm;
-  outline: 1mm solid black;
+  outline: 0.7mm dashed black;
   background-color: white;
+
+  font-family: system-ui;
 
   page-break-after: always;
 }
@@ -65,7 +93,6 @@ export default {
   font-size: 0.5cm;
   color: white;
 
-  font-family: system-ui;
   font-weight: bold;
   letter-spacing: 0.3mm;
 
