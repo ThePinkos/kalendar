@@ -9,6 +9,10 @@ const routes = [
     component: Home
   },
   {
+    path: '/:catchAll(.*)',
+    redirect: '/'
+  },
+  {
     path: '/kalendar/:id',
     name: 'kalendar',
     component: Kalendar,
