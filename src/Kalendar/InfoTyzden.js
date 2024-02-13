@@ -40,12 +40,14 @@ function getDayNumberInMonth(date) {
   return dayOfMonth
 }
 
-function getMonthName(year) {
+function getMonthName(year, start) {
   var monthArray = [];
+  let firstDay
+  let lastDay
 
   for (let i = -1; i < 54; i++) {
-    let firstDay = new Date(year, 0, i * 7 + 1);
-    let lastDay = new Date(year, 0, i * 7 + 7);
+      firstDay = new Date(year, 0, start + (i * 7 + 7));
+      lastDay = new Date(year, 0, start + (i * 7 + 13));
 
     let firstMonth = firstDay.toLocaleDateString("sk-SK", { month: "long" });
     let lastMonth = lastDay.toLocaleDateString("sk-SK", { month: "long" });
@@ -109,9 +111,11 @@ export function kalendar(year) {
   }
 
   infoArray = infoArray[0].map((_, index) => infoArray.map((arr) => arr[index]))
-  infoArray.push(getMonthName(year))
+  infoArray.push(getMonthName(year, start))
   infoArray.push(meninyArray(year))
   infoArray.push(getYear(year))
+
+  console.log(start)
 
   return infoArray
 }
