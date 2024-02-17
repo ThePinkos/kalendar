@@ -1,7 +1,8 @@
 <template>
+  <div id="mainfull">
   <div class="main">
     <div class="strana uvodna">Rok {{ generate[6].at(10) }}</div>
-    <div class="strana" v-for="strana in 55" :key="strana">
+    <div class="strana " v-for="strana in 55" :key="strana">
       <!-- FOTKA -->
       <div class="fotka"></div>
 
@@ -15,24 +16,30 @@
         <div class="den" v-for="den in 5" :key="den">
           <div class="datum">{{ generate[0].at(den - 7 + strana * 7 - 1) }}</div>
           <div class="info">
-            {{ generate[1].at(den - 7 + strana * 7 - 1) }} --
-            {{ generate[2].at(den - 7 + strana * 7 - 1) }}
-            {{ generate[5].at(den - 7 + strana * 7 - 1) }}
+            <div class="menoDna">{{ generate[1].at(den - 7 + strana * 7 - 1) }}</div>
+            <div class="dianie">
+              <p class="narodeniny">Tomáš Kubík - narodeniny (2024)</p>
+              <p class="sviatky">Tomáš Kubík - narodeniny (2024)</p>
+              <p class="slnovraty">Slnovrat</p>
+            </div>
+            <div class="meniny">{{ generate[5].at(den - 7 + strana * 7 - 1) }}</div>
+            <div class="denVRoku">{{ generate[2].at(den - 7 + strana * 7 - 1) }}</div>
           </div>
         </div>
         <div class="den vikend" v-for="den in 2" :key="den">
           <div class="datum">{{ generate[0].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
           <div class="info">
-            {{ generate[1].at(5 + (den - 7 + strana * 7 - 1)) }} --
-            {{ generate[2].at(5 + (den - 7 + strana * 7 - 1)) }}
-            {{ generate[5].at(5 + (den - 7 + strana * 7 - 1)) }}
+            <div class="menoDna">{{ generate[1].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
+            <div class="dianie">Test</div>
+            <div class="meniny">{{ generate[5].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
+           <div class="denVRoku">{{ generate[2].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
           </div>
         </div>
       </div>
 
       <!-- POZNAMKY -->
-      <div class="poznamky"><img src="../assets/pero.svg" alt="" /></div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -52,19 +59,25 @@ export default {
 <style scoped>
 
 /* CAST STRANA */
+#mainfull {
+  display: grid;
+  justify-content: center;
+}
+
 .main {
   display: grid;
-  grid-template-columns: 15cm 15cm;
+  grid-template-columns: 1fr 1fr;
   grid-auto-flow: dense;
-  gap: 0;
 }
 
 .main > div:nth-child(-n + 28) {
   grid-column: 1;
+  padding-right: 1cm;
 }
 
 .main > div:nth-child(n + 29) {
   grid-column: 2;
+  padding-left: 1cm;
 }
 
 .uvodna {
@@ -77,15 +90,11 @@ export default {
 }
 
 .strana {
-  width: 12.5cm;
-  height: 40cm;
-  padding: 1cm;
-  outline: 0.7mm dashed black;
   background-color: white;
 
   font-family: system-ui;
 
-  page-break-after: always;
+  height: 100cqmax;
 }
 
 /* CAST MESIAC INFO */
@@ -105,7 +114,7 @@ export default {
   text-align: center;
 }
 .tyzden_info div {
-  background-color: rgb(5, 22, 80);
+  background-color: #051650;
   padding: 0.3mm;
 }
 
@@ -121,18 +130,16 @@ export default {
   display: grid;
   grid-template-columns: 12% calc(88%);
 }
-
 .datum {
   background-color: #0070c0;
   border-top: 1mm solid white;
 
+  height: 3cm;
   font-size: 1cm;
 
   font-family: system-ui;
-  font-weight: bold;
+  font-weight:bold;
   color: white;
-
-  height: 3cm;
 
   line-height: 2.8cm;
   text-align: center;
@@ -148,7 +155,52 @@ export default {
   height: 3cm;
   font-size: 65%;
   line-height: 4mm;
+
+  display: grid;
+  grid-template-columns: 2.7fr 10fr 1fr ;
+  grid-template-rows: 1fr 5fr 7fr;
+
 }
+.menoDna {
+  color: rgb(49, 49, 49);
+  padding-top: 0.4mm;
+  padding-left: 0.55mm;
+  font-size: 3mm;
+  font-weight: 700;
+}
+.meniny {
+  padding-left: 1mm;
+  font-size: 2.8mm;
+  font-weight: 350;
+  font-style: italic;
+
+  grid-row: 2;
+  grid-column: 1;
+}
+.denVRoku {
+  grid-column: 3;
+  text-align: right;
+  font-weight: bold;
+  color: rgb(49, 49, 49);
+  padding-right: 1mm;
+}
+.dianie {
+  grid-row: 1/4;
+}
+.dianie p {
+  padding: 0.8mm 1.5mm;
+  border-radius: 1mm;
+  width: max-content;
+  max-width: 7.3cm;
+  margin-top: 0.5mm;
+}
+.dianie .sviatky {
+  background-color: rgb(173, 11, 11);
+}
+.dianie .narodeniny {
+  background-color: yellow;
+}
+
 .vikend .info {
   border-bottom: 1mm solid #00b050;
   border-top: 1mm solid #00b050;
@@ -160,16 +212,10 @@ export default {
 .fotka {
   background-color: rgb(83, 153, 153);
 
-  max-width: 13cm;
-
   aspect-ratio: 4/3;
   object-fit: cover;
 }
 
 /* CAST POZNAMKY */
-.poznamky img {
-  width: 8mm;
-  margin: 1.5mm;
-  opacity: 0.5;
-}
+
 </style>
