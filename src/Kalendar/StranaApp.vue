@@ -10,7 +10,7 @@
         <!-- TYZDEN -->
         <div class="tyzden">
           <div class="tyzden_info">
-            <div>{{ generate[6].at(strana - 1) }} {{ generate[4].at(strana - 1) }}</div>
+            <div>{{ generate[4].at(strana - 1) }} {{ generate[6].at(strana - 1) }}</div>
             <div>{{ generate[3].at((strana - 1) * 7) }}. týždeň</div>
           </div>
 
@@ -19,7 +19,9 @@
             <div class="info">
               <div class="menoDna">{{ generate[1].at(den - 7 + strana * 7 - 1) }}</div>
               <div class="dianie">
-                <p class="narodeniny">{{ generate[7].at(den - 7 + strana * 7 - 1) }}</p>
+                <div class="narodeniny">
+                  {{ generate[7].at(den - 7 + strana * 7 - 1) }}
+                </div>
               </div>
               <div class="meniny">{{ generate[5].at(den - 7 + strana * 7 - 1) }}</div>
               <div class="denVRoku">{{ generate[2].at(den - 7 + strana * 7 - 1) }}</div>
@@ -32,7 +34,9 @@
             <div class="info" :style="{ borderBottom: den === 1 ? '0' : undefined }">
               <div class="menoDna">{{ generate[1].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
               <div class="dianie">
-                <p class="narodeniny">{{ generate[7].at(5 + (den - 7 + strana * 7 - 1)) }}</p>
+                <div class="narodeniny">
+                  {{ generate[7].at(5 + (den - 7 + strana * 7 - 1)) }}
+                </div>
               </div>
               <div class="meniny">{{ generate[5].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
               <div class="denVRoku">{{ generate[2].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
@@ -195,18 +199,22 @@ export default {
 .dianie {
   grid-row: 1/4;
 }
-.dianie p {
-  padding: 0.8mm 1.5mm;
-  border-radius: 1mm;
-  width: max-content;
-  max-width: 7.3cm;
-  margin-top: 0.5mm;
-}
-.dianie .sviatky {
+.sviatky {
   background-color: rgb(173, 11, 11);
 }
-.dianie .narodeniny {
+.narodeniny {
+  padding: 0.8mm 1.5mm;
+  border-radius: 1mm;
+  margin-top: 0.5mm;
+
   background-color: yellow;
+
+  max-width: 7.3cm;
+  width: max-content;
+  display: inline-block;
+}
+.narodeniny:empty {
+  display: none;
 }
 
 .vikend .info {

@@ -16,9 +16,9 @@ export function sviatky(pocetDni, year) {
 
   //Statne sviatky
 
-  sviatkyList[d(new Date(year, 0, 1))] = 'novy rok'
+  sviatkyList[d(new Date(year, 0, 1))] = 'Nový rok'
   sviatkyList[d(new Date(year, 2, 7))] = 'Meniny - Tomáš Kubík'
-  sviatkyList[d(new Date(year, 11, 31))] = 'silvester'
+  sviatkyList[d(new Date(year, 11, 31))] = 'Silvester'
 
   return sviatkyList
 }
