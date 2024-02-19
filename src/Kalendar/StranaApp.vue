@@ -1,45 +1,49 @@
 <template>
   <div id="mainfull">
-  <div class="main">
-    <div class="strana uvodna">Rok {{ generate[6].at(10) }}</div>
-    <div class="strana " v-for="strana in 55" :key="strana">
-      <!-- FOTKA -->
-      <div class="fotka"></div>
+    <input type="number" id="vyskaDna" v-model="height" />
+    <div class="main">
+      <div class="strana uvodna">Rok {{ generate[6].at(10) }}</div>
+      <div class="strana" v-for="strana in 55" :key="strana">
+        <!-- FOTKA -->
+        <div class="fotka"></div>
 
-      <!-- TYZDEN -->
-      <div class="tyzden">
-        <div class="tyzden_info">
-          <div>{{ generate[6].at(strana - 1) }} {{ generate[4].at(strana - 1) }}</div>
-          <div>{{ generate[3].at((strana - 1) * 7) }}. týždeň</div>
-        </div>
+        <!-- TYZDEN -->
+        <div class="tyzden">
+          <div class="tyzden_info">
+            <div>{{ generate[6].at(strana - 1) }} {{ generate[4].at(strana - 1) }}</div>
+            <div>{{ generate[3].at((strana - 1) * 7) }}. týždeň</div>
+          </div>
 
-        <div class="den" v-for="den in 5" :key="den">
-          <div class="datum">{{ generate[0].at(den - 7 + strana * 7 - 1) }}</div>
-          <div class="info">
-            <div class="menoDna">{{ generate[1].at(den - 7 + strana * 7 - 1) }}</div>
-            <div class="dianie">
-              <p class="narodeniny">Tomáš Kubík - narodeniny (2024)</p>
-              <p class="sviatky">Tomáš Kubík - narodeniny (2024)</p>
-              <p class="slnovraty">Slnovrat</p>
+          <div class="den" v-for="den in 5" :key="den" :style="{ height: `${height}cm` }">
+            <div class="datum">{{ generate[0].at(den - 7 + strana * 7 - 1) }}</div>
+            <div class="info">
+              <div class="menoDna">{{ generate[1].at(den - 7 + strana * 7 - 1) }}</div>
+              <div class="dianie">
+                <p class="narodeniny">Tomáš Kubík - narodeniny (2024)</p>
+                <p class="sviatky">Tomáš Kubík - narodeniny (2024)</p>
+                <p class="slnovraty">Slnovrat</p>
+              </div>
+              <div class="meniny">{{ generate[5].at(den - 7 + strana * 7 - 1) }}</div>
+              <div class="denVRoku">{{ generate[2].at(den - 7 + strana * 7 - 1) }}</div>
             </div>
-            <div class="meniny">{{ generate[5].at(den - 7 + strana * 7 - 1) }}</div>
-            <div class="denVRoku">{{ generate[2].at(den - 7 + strana * 7 - 1) }}</div>
+          </div>
+          <div class="den vikend" v-for="den in 2" :key="den" :style="{ height: `${height}cm` }">
+            <div class="datum" :style="{ borderBottom: den === 2 ? '1mm white solid' : undefined }">
+              {{ generate[0].at(5 + (den - 7 + strana * 7 - 1)) }}
+            </div>
+            <div class="info" :style="{ borderBottom: den === 1 ? '0' : undefined }">
+              <div class="menoDna">{{ generate[1].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
+              <div class="dianie">Test</div>
+              <div class="meniny">{{ generate[5].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
+              <div class="denVRoku">{{ generate[2].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
+            </div>
           </div>
         </div>
-        <div class="den vikend" v-for="den in 2" :key="den">
-          <div class="datum">{{ generate[0].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
-          <div class="info">
-            <div class="menoDna">{{ generate[1].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
-            <div class="dianie">Test</div>
-            <div class="meniny">{{ generate[5].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
-           <div class="denVRoku">{{ generate[2].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
-          </div>
-        </div>
-      </div>
 
-      <!-- POZNAMKY -->
+        <!-- POZNAMKY -->
+        <div class="poznamky"><img src="../assets/pero.svg" alt="" /></div>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -52,13 +56,18 @@ export default {
       return kalendar(this.id)
     }
   },
+  data() {
+    return {
+      height: 3
+    }
+  },
   props: ['id']
 }
 </script>
 
 <style scoped>
-
 /* CAST STRANA */
+
 #mainfull {
   display: grid;
   justify-content: center;
@@ -94,7 +103,11 @@ export default {
 
   font-family: system-ui;
 
-  height: 100cqmax;
+  height: 40cm;
+
+  padding: 20mm 9mm 0 11mm;
+
+  outline: 0.6mm dashed black;
 }
 
 /* CAST MESIAC INFO */
@@ -125,23 +138,22 @@ export default {
 }
 
 .den {
-  height: 3cm;
-
   display: grid;
   grid-template-columns: 12% calc(88%);
 }
 .datum {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: #0070c0;
   border-top: 1mm solid white;
 
-  height: 3cm;
-  font-size: 1cm;
-
+  font-size: 280%;
   font-family: system-ui;
-  font-weight:bold;
+  font-weight: bold;
   color: white;
 
-  line-height: 2.8cm;
   text-align: center;
 }
 .vikend .datum {
@@ -150,16 +162,16 @@ export default {
 .info {
   border-top: 1mm solid rgb(38, 74, 194);
   border-right: 1mm solid rgb(38, 74, 194);
-  border-collapse: collapse;
 
-  height: 3cm;
   font-size: 65%;
   line-height: 4mm;
 
-  display: grid;
-  grid-template-columns: 2.7fr 10fr 1fr ;
-  grid-template-rows: 1fr 5fr 7fr;
+  overflow: hidden;
 
+  display: grid;
+  grid-template-columns: 17% 73% 10%;
+  grid-template-rows: 15% 75% 10%;
+  max-width: 100%;
 }
 .menoDna {
   color: rgb(49, 49, 49);
@@ -217,5 +229,19 @@ export default {
 }
 
 /* CAST POZNAMKY */
+.poznamky img {
+  width: 8mm;
+  margin: 1.5mm;
+  opacity: 0.5;
+}
 
+@media print {
+  .strana {
+    height: calc(100cqmax - 2cm);
+  }
+
+  input {
+    display: none;
+  }
+}
 </style>
