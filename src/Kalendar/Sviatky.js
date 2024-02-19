@@ -106,29 +106,40 @@ export function mena(pocetDni, year) {
   return menaList
 }
 
-export function vyrocia(pocetDni, year) {
-  const vyrociaList = Array(pocetDni).fill(undefined)
+export function vyrociaSvadby(pocetDni, year) {
+  const vyrociaSvadbyList = Array(pocetDni).fill(undefined)
 
-  const vyrociaData = [
-    { M: 1, D: 1, name: 'Deň vzniku Slovenkej republiky' },
-    { M: 1, D: 6, name: 'Zjavenie Pána (Traja králi)' },
-    { M: 5, D: 1, name: 'Sviatok práce' },
-    { M: 5, D: 8, name: 'Deň víťazstva nad fašizmom' },
-    { M: 7, D: 5, name: 'Sviatok svätých Cyrila a Metoda' },
-    { M: 8, D: 29, name: 'Výročie SNP' },
-    { M: 9, D: 1, name: 'Deň Ústavy Slovenskej republiky' },
-    { M: 9, D: 15, name: 'Sedembolestná Panna Mária' },
-    { M: 11, D: 1, name: 'Sviatok všetkých svätých' },
-    { M: 11, D: 17, name: 'Deň boja za slobodu a demokraciu' },
-    { M: 12, D: 24, name: 'Štedrý deň' },
-    { M: 12, D: 25, name: 'Prvý sviatok vianočný' },
-    { M: 12, D: 26, name: 'Druhý sviatok vianočný' }
+  const vyrociaSvadbyData = [
+    { M: 2, D: 8, name: 'Anton Kubík st. a Janka Kubíková - výročie svadby (1975)' },
+    { M: 4, D: 23, name: 'Anton Kubík ml. a Zuzana Kubíková - výročie svadby (2014)' },
+    { M: 4, D: 30, name: 'Zdenko Kubík a Zuznana Michalidesová Kubíková - výročie svadby (2011)' },
+    { M: 9, D: 9, name: 'Branislav Kubík a Ildikó Kubíková - výročie svadby (2000)' }
   ]
 
-  vyrociaData.forEach(({ M, D, name }) => {
+  vyrociaSvadbyData.forEach(({ M, D, name }) => {
     const date = new Date(year, M - 1, D)
-    vyrociaList[d(date)] = name
+    vyrociaSvadbyList[d(date)] = name
   })
 
-  return vyrociaList
+  return vyrociaSvadbyList
+}
+
+export function vyrociaUmrtia(pocetDni, year) {
+  const vyrociaUmrtiaList = Array(pocetDni).fill(undefined)
+
+  const vyrociaUmrtiaData = [
+    { M: 2, D: 4, name: 'Matej Kubík st. - výročie úmrtia (1981)' },
+    { M: 4, D: 9, name: 'Helena Riecka - výročie úmrtia (2015)' },
+    { M: 4, D: 11, name: 'Peter Riecky - výročie úmrtia (2020)' },
+    { M: 10, D: 10, name: 'Rudolf Zavadzan st. - výročie úmrtia (2009)' },
+    { M: 11, D: 6, name: 'Paulína Kubíková - výročie úmrtia (2011)' },
+    { M: 12, D: 1, name: 'Štefan Riecky st. - výročie úmrtia (1994)' }
+  ]
+
+  vyrociaUmrtiaData.forEach(({ M, D, name }) => {
+    const date = new Date(year, M - 1, D)
+    vyrociaUmrtiaList[d(date)] = name
+  })
+
+  return vyrociaUmrtiaList
 }

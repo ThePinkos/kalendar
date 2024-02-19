@@ -3,6 +3,7 @@
     <input type="number" id="vyskaDna" v-model="height" />
     <div class="main">
       <div class="strana uvodna">Rok {{ generate[6].at(10) }}</div>
+
       <div class="strana" v-for="strana in 55" :key="strana">
         <!-- FOTKA -->
         <div class="fotka"></div>
@@ -14,38 +15,44 @@
             <div>{{ generate[3].at((strana - 1) * 7) }}. týždeň</div>
           </div>
 
-          <div class="den" v-for="den in 5" :key="den" :style="{ height: `${height}cm` }">
-            <div class="datum">{{ generate[0].at(den - 7 + strana * 7 - 1) }}</div>
-            <div class="info">
+          <!-- DEN -->
+          <div class="den" :class="{ vikend: den === 6 || den === 7 }" v-for="den in 7" :key="den" :style="{ height: `${height}cm` }">
+            <!-- DATUM CAST -->
+            <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined }">
+              {{ generate[0].at(den - 7 + strana * 7 - 1) }}
+            </div>
+
+            <!-- INFO CAST -->
+            <div class="info" :style="{ borderBottom: den === 6 ? '0' : undefined }">
               <div class="menoDna">{{ generate[1].at(den - 7 + strana * 7 - 1) }}</div>
+
+              <!-- SVIATKY, NARODENINY, MENINY, ATD. -->
               <div class="dianie">
-                <div class="narodeniny">
+                <div class="sviatky">
                   {{ generate[7].at(den - 7 + strana * 7 - 1) }}
                 </div>
+                <div class="vyrociaSvadby">
+                  {{ generate[8].at(den - 7 + strana * 7 - 1) }}
+                </div>
+                <div class="vyrociaUmrtia">
+                  {{ generate[9].at(den - 7 + strana * 7 - 1) }}
+                </div>
+                <div class="mena">
+                  {{ generate[10].at(den - 7 + strana * 7 - 1) }}
+                </div>
               </div>
+
+              <!-- MENINY V TEN DEN -->
               <div class="meniny">{{ generate[5].at(den - 7 + strana * 7 - 1) }}</div>
+
+              <!-- CISLO DNA V ROKU -->
               <div class="denVRoku">{{ generate[2].at(den - 7 + strana * 7 - 1) }}</div>
             </div>
           </div>
-          <div class="den vikend" v-for="den in 2" :key="den" :style="{ height: `${height}cm` }">
-            <div class="datum" :style="{ borderBottom: den === 2 ? '1mm white solid' : undefined }">
-              {{ generate[0].at(5 + (den - 7 + strana * 7 - 1)) }}
-            </div>
-            <div class="info" :style="{ borderBottom: den === 1 ? '0' : undefined }">
-              <div class="menoDna">{{ generate[1].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
-              <div class="dianie">
-                <div class="narodeniny">
-                  {{ generate[7].at(5 + (den - 7 + strana * 7 - 1)) }}
-                </div>
-              </div>
-              <div class="meniny">{{ generate[5].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
-              <div class="denVRoku">{{ generate[2].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
-            </div>
-          </div>
-        </div>
 
-        <!-- POZNAMKY -->
-        <div class="poznamky"><img src="../assets/pero.svg" alt="" /></div>
+          <!-- POZNAMKY -->
+          <div class="poznamky"><img src="../assets/pero.svg" alt="" /></div>
+        </div>
       </div>
     </div>
   </div>
@@ -107,6 +114,8 @@ export default {
 
   padding: 20mm 10mm 0 10mm;
 
+  height: 40cm;
+
   outline: 0.6mm dashed black;
 }
 
@@ -149,7 +158,7 @@ export default {
   background-color: #0070c0;
   border-top: 1mm solid white;
 
-  font-size: 280%;
+  font-size: 250%;
   font-family: system-ui;
   font-weight: bold;
   color: white;
@@ -169,20 +178,20 @@ export default {
   overflow: hidden;
 
   display: grid;
-  grid-template-columns: 17% 73% 10%;
-  grid-template-rows: 15% 75% 10%;
+  grid-template-columns: 22% 68% 10%;
+  grid-template-rows: 25% 65% 10%;
   max-width: 100%;
 }
 .menoDna {
   color: rgb(49, 49, 49);
-  padding-top: 0.4mm;
-  padding-left: 0.55mm;
-  font-size: 3mm;
+  padding-top: 0.24em;
+  padding-left: 0.2em;
+  font-size: 172%;
   font-weight: 700;
 }
 .meniny {
-  padding-left: 1mm;
-  font-size: 2.8mm;
+  padding-left: 0.4em;
+  font-size: 145%;
   font-weight: 350;
   font-style: italic;
 
@@ -196,25 +205,37 @@ export default {
   color: rgb(49, 49, 49);
   padding-right: 1mm;
 }
-.dianie {
+.dianie > * {
   grid-row: 1/4;
-}
-.sviatky {
-  background-color: rgb(173, 11, 11);
-}
-.narodeniny {
+
   padding: 0.8mm 1.5mm;
   border-radius: 1mm;
   margin-top: 0.5mm;
 
-  background-color: yellow;
-
   max-width: 7.3cm;
   width: max-content;
-  display: inline-block;
+  display: block;
+  clear: right;
 }
-.narodeniny:empty {
+.dianie > *:empty {
   display: none;
+}
+
+.sviatky {
+  background-color: rgb(173, 11, 11);
+  color: white;
+}
+.vyrociaSvadby {
+  background-color: #0070c0;
+  color: yellow;
+}
+.vyrociaUmrtia {
+  background-color: rgb(49, 49, 49);
+  color: white;
+}
+.mena {
+  background-color: yellow;
+  color: black;
 }
 
 .vikend .info {
@@ -240,6 +261,9 @@ export default {
 }
 
 @media print {
+  .strana {
+    height: calc(100cqmax - 2cm);
+  }
   input {
     display: none;
   }

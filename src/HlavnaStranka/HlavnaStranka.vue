@@ -27,7 +27,7 @@ export default {
   },
   mounted() {
     // Focus on the input field when the component is mounted
-    this.$refs.yearInput.focus();
+    this.$refs.yearInput.focus()
   }
 }
 </script>
