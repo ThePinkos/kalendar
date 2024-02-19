@@ -17,7 +17,7 @@ export function sviatky(pocetDni, year) {
   //Statne sviatky
 
   sviatkyList[d(new Date(year, 0, 1))] = 'Nový rok'
-  sviatkyList[d(new Date(year, 2, 7))] = 'Meniny - Tomáš Kubík'
+  sviatkyList[d(new Date(year, 2, 7))] = 'Tomáš Kubík - meniny'
   sviatkyList[d(new Date(year, 11, 31))] = 'Silvester'
 
   return sviatkyList
@@ -39,4 +39,17 @@ export function mena(pocetDni, year) {
   menaList[d(new Date(year, 11, 24))] = 'Meniny - Adam Kubík'
 
   return menaList
+}
+
+export function vyrocia(pocetDni, year) {
+  let vyrociaList = []
+
+  for (let i = 0; i < pocetDni; i++) {
+    vyrociaList[i] = undefined
+  }
+
+  // Výročia
+  vyrociaList[d(new Date(year, 1, 8))] = 'Anton Kubík st. a Janka Kubíková - výročie svadby (1975)'
+
+  return vyrociaList
 }

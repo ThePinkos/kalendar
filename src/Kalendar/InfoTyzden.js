@@ -1,5 +1,7 @@
 import { meniny } from './Meniny.js'
 import { sviatky } from './Sviatky.js'
+import { mena } from './Sviatky.js'
+import { vyrocia } from './Sviatky.js'
 
 function doplnTzyden(x) {
   const mappings = { 1: 7, 2: 8, 3: 9, 4: 10, 5: 11, 6: 12, 0: 13 }
@@ -113,6 +115,36 @@ function sviatkyArray(year) {
   return resultAray
 }
 
+function menaArray(year) {
+  const previousYearIndexes = mena(getMaxDays(year - 1), year - 1).slice(
+    -doplnTzyden(new Date(year, 0, 1).getDay())
+  )
+  const nextYearIndexes = mena(getMaxDays(year + 1), year + 1).slice(
+    0,
+    20 - doplnTzyden(new Date(year, 11, 31).getDay())
+  )
+  const resultAray = [...previousYearIndexes, ...mena(getMaxDays(year), year), ...nextYearIndexes]
+
+  return resultAray
+}
+
+function vyrociaArray(year) {
+  const previousYearIndexes = vyrocia(getMaxDays(year - 1), year - 1).slice(
+    -doplnTzyden(new Date(year, 0, 1).getDay())
+  )
+  const nextYearIndexes = vyrocia(getMaxDays(year + 1), year + 1).slice(
+    0,
+    20 - doplnTzyden(new Date(year, 11, 31).getDay())
+  )
+  const resultAray = [
+    ...previousYearIndexes,
+    ...vyrocia(getMaxDays(year), year),
+    ...nextYearIndexes
+  ]
+
+  return resultAray
+}
+
 // Example usage:
 export function kalendar(year) {
   let infoArray = []
@@ -136,6 +168,8 @@ export function kalendar(year) {
   infoArray.push(meninyArray(year))
   infoArray.push(getYear(year))
   infoArray.push(sviatkyArray(year))
+  infoArray.push(menaArray(year))
+  infoArray.push(vyrociaArray(year))
 
   return infoArray
 }
