@@ -19,9 +19,7 @@
             <div class="info">
               <div class="menoDna">{{ generate[1].at(den - 7 + strana * 7 - 1) }}</div>
               <div class="dianie">
-                <p class="narodeniny">Tomáš Kubík - narodeniny (2024)</p>
-                <p class="sviatky">Tomáš Kubík - narodeniny (2024)</p>
-                <p class="slnovraty">Slnovrat</p>
+                <p class="narodeniny">{{ generate[7].at(den - 7 + strana * 7 - 1) }}</p>
               </div>
               <div class="meniny">{{ generate[5].at(den - 7 + strana * 7 - 1) }}</div>
               <div class="denVRoku">{{ generate[2].at(den - 7 + strana * 7 - 1) }}</div>
@@ -33,7 +31,9 @@
             </div>
             <div class="info" :style="{ borderBottom: den === 1 ? '0' : undefined }">
               <div class="menoDna">{{ generate[1].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
-              <div class="dianie">Test</div>
+              <div class="dianie">
+                <p class="narodeniny">{{ generate[7].at(5 + (den - 7 + strana * 7 - 1)) }}</p>
+              </div>
               <div class="meniny">{{ generate[5].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
               <div class="denVRoku">{{ generate[2].at(5 + (den - 7 + strana * 7 - 1)) }}</div>
             </div>
@@ -81,12 +81,10 @@ export default {
 
 .main > div:nth-child(-n + 28) {
   grid-column: 1;
-  padding-right: 1cm;
 }
 
 .main > div:nth-child(n + 29) {
   grid-column: 2;
-  padding-left: 1cm;
 }
 
 .uvodna {
@@ -103,9 +101,7 @@ export default {
 
   font-family: system-ui;
 
-  height: 40cm;
-
-  padding: 20mm 9mm 0 11mm;
+  padding: 20mm 10mm 0 10mm;
 
   outline: 0.6mm dashed black;
 }
@@ -236,10 +232,6 @@ export default {
 }
 
 @media print {
-  .strana {
-    height: calc(100cqmax - 2cm);
-  }
-
   input {
     display: none;
   }

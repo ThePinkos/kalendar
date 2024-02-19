@@ -1,5 +1,5 @@
 import { meniny } from './Meniny.js'
-//import { sviatky } from './Sviatky.js'
+import { sviatky } from './Sviatky.js'
 
 function doplnTzyden(x) {
   const mappings = { 1: 7, 2: 8, 3: 9, 4: 10, 5: 11, 6: 12, 0: 13 }
@@ -41,33 +41,33 @@ function getDayNumberInMonth(date) {
 }
 
 function getMonthName(year, start) {
-  var monthArray = [];
+  var monthArray = []
   let firstDay
   let lastDay
 
   for (let i = -1; i < 54; i++) {
-      firstDay = new Date(year, 0, start + (i * 7 + 7));
-      lastDay = new Date(year, 0, start + (i * 7 + 13));
+    firstDay = new Date(year, 0, start + (i * 7 + 7))
+    lastDay = new Date(year, 0, start + (i * 7 + 13))
 
-    let firstMonth = firstDay.toLocaleDateString("sk-SK", { month: "long" });
-    let lastMonth = lastDay.toLocaleDateString("sk-SK", { month: "long" });
+    let firstMonth = firstDay.toLocaleDateString('sk-SK', { month: 'long' })
+    let lastMonth = lastDay.toLocaleDateString('sk-SK', { month: 'long' })
 
-    firstMonth = firstMonth[0].toUpperCase() + firstMonth.slice(1);
-    lastMonth = lastMonth[0].toUpperCase() + lastMonth.slice(1);
+    firstMonth = firstMonth[0].toUpperCase() + firstMonth.slice(1)
+    lastMonth = lastMonth[0].toUpperCase() + lastMonth.slice(1)
 
     if (firstMonth !== lastMonth) {
-      monthArray.push(firstMonth + '/' + lastMonth);
+      monthArray.push(firstMonth + '/' + lastMonth)
     } else {
-      monthArray.push(firstMonth);
+      monthArray.push(firstMonth)
     }
   }
 
-  return monthArray;
+  return monthArray
 }
 
 function getYear(year) {
   var yearArray = []
-  var nextYear = year - (-1)
+  var nextYear = year - -1
   var beforeYear = year - 1
 
   for (let i = 0; i <= 54; i++) {
@@ -75,21 +75,42 @@ function getYear(year) {
     yearArray.push(yearNumber)
   }
 
-  yearArray[1] = new Date(year, 0, 1).getDay() === 1 ? year : beforeYear + '/' + year.toString().slice(-2);
-  yearArray[53] = new Date(year, 11, 31).getDay() === 0 ? year : year + '/' + nextYear.toString().slice(-2);
+  yearArray[1] =
+    new Date(year, 0, 1).getDay() === 1 ? year : beforeYear + '/' + year.toString().slice(-2)
+  yearArray[53] =
+    new Date(year, 11, 31).getDay() === 0 ? year : year + '/' + nextYear.toString().slice(-2)
 
   return yearArray
 }
 
 function meninyArray(year) {
-  const last10Indexes = meniny(getMaxDays(year)).slice(-doplnTzyden(new Date(year, 0, 1).getDay()))
-  const first10Indexes = meniny(getMaxDays(year - 1)).slice(
+  const previousYearIndexes = meniny(getMaxDays(year - 1)).slice(
+    -doplnTzyden(new Date(year, 0, 1).getDay())
+  )
+  const nextYearIndexes = meniny(getMaxDays(year + 1)).slice(
     0,
     20 - doplnTzyden(new Date(year, 11, 31).getDay())
   )
-  const resultArray = [...last10Indexes, ...meniny(getMaxDays(year)), ...first10Indexes]
+  const resultArray = [...previousYearIndexes, ...meniny(getMaxDays(year)), ...nextYearIndexes]
 
   return resultArray
+}
+
+function sviatkyArray(year) {
+  const previousYearIndexes = sviatky(getMaxDays(year - 1), year - 1).slice(
+    -doplnTzyden(new Date(year, 0, 1).getDay())
+  )
+  const nextYearIndexes = sviatky(getMaxDays(year + 1), year + 1).slice(
+    0,
+    20 - doplnTzyden(new Date(year, 11, 31).getDay())
+  )
+  const resultAray = [
+    ...previousYearIndexes,
+    ...sviatky(getMaxDays(year), year),
+    ...nextYearIndexes
+  ]
+
+  return resultAray
 }
 
 // Example usage:
@@ -114,6 +135,7 @@ export function kalendar(year) {
   infoArray.push(getMonthName(year, start))
   infoArray.push(meninyArray(year))
   infoArray.push(getYear(year))
+  infoArray.push(sviatkyArray(year))
 
   return infoArray
 }
