@@ -143,3 +143,26 @@ export function vyrociaUmrtia(pocetDni, year) {
 
   return vyrociaUmrtiaList
 }
+
+export function prazdniny(pocetDni, year) {
+  const prazdninyList = Array(pocetDni).fill(undefined)
+
+  const prazdninyData = [
+    { start: '1-1', end: '1-7', name: 'Vianočné prázdniny' },
+    { start: '12-23', end: '12-31', name: 'Vianočné prázdniny' },
+    { start: '10-30', end: '10-31', name: 'Jesenné prázdniny' },
+    { start: '3-28', end: '4-2', name: 'Veľkonočné prázdniny' },
+    { start: '7-1', end: '8-31', name: 'Letné prázdniny' },
+    { start: '2-19', end: '2-23', name: 'Jarné prázdniny (BB, ZA, TN)' },
+    { start: '2-26', end: '3-1', name: 'Jarné prázdniny (KE, PO)' },
+    { start: '3-4', end: '3-8', name: 'Jarné prázdniny (BA, NR, TN)' }
+  ]
+
+  prazdninyData.forEach(({ start, end, name }) => {
+    for (let currentDate = new Date(year, parseInt(start.split('-')[0]) - 1, parseInt(start.split('-')[1])); currentDate <= new Date(year, parseInt(end.split('-')[0]) - 1, parseInt(end.split('-')[1])); currentDate.setDate(currentDate.getDate() + 1)) {
+      prazdninyList[d(currentDate)] = name
+    }
+  })
+
+  return prazdninyList
+}

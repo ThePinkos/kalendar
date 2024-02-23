@@ -3,6 +3,7 @@ import { sviatky } from './Sviatky.js'
 import { mena } from './Sviatky.js'
 import { vyrociaSvadby } from './Sviatky.js'
 import { vyrociaUmrtia } from './Sviatky.js'
+import { prazdniny } from './Sviatky.js'
 
 function doplnTzyden(x) {
   const mappings = { 1: 7, 2: 8, 3: 9, 4: 10, 5: 11, 6: 12, 0: 13 }
@@ -53,7 +54,7 @@ function getMonthName(year, start) {
     const firstMonth = firstDay.toLocaleDateString('sk-SK', { month: 'long' }).replace(/^\w/, (c) => c.toUpperCase())
     const lastMonth = lastDay.toLocaleDateString('sk-SK', { month: 'long' }).replace(/^\w/, (c) => c.toUpperCase())
 
-    monthArray.push(firstMonth !== lastMonth ? `${firstMonth}/${lastMonth}` : firstMonth)
+    monthArray.push(firstMonth !== lastMonth ? `${firstMonth.substring(0, 3)}/${lastMonth}` : firstMonth)
   }
 
   return monthArray
@@ -101,7 +102,7 @@ export function kalendar(year) {
   }
 
   infoArray = infoArray[0].map((_, index) => infoArray.map((arr) => arr[index]))
-  infoArray.push(getMonthName(year, start), generateArray(meniny, year), getYear(year), generateArray(sviatky, year), generateArray(vyrociaSvadby, year), generateArray(vyrociaUmrtia, year), generateArray(mena, year))
+  infoArray.push(getMonthName(year, start), generateArray(meniny, year), getYear(year), generateArray(sviatky, year), generateArray(vyrociaSvadby, year), generateArray(vyrociaUmrtia, year), generateArray(mena, year), generateArray(prazdniny, year))
 
   return infoArray
 }

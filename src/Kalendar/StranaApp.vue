@@ -6,13 +6,13 @@
 
       <div class="strana" v-for="strana in 55" :key="strana">
         <!-- FOTKA -->
-        <div class="fotka"></div>
+        <img class="fotka" src="../assets/testimg.jpg" alt="fotka" />
 
         <!-- TYZDEN -->
         <div class="tyzden">
           <div class="tyzden_info">
-            <div>{{ generate[4].at(strana - 1) }} {{ generate[6].at(strana - 1) }}</div>
-            <div>{{ generate[3].at((strana - 1) * 7) }}. týždeň</div>
+            <div class="div1">{{ generate[4].at(strana - 1) }} {{ generate[6].at(strana - 1) }}</div>
+            <div class="div2">{{ generate[3].at((strana - 1) * 7) }}. týždeň</div>
           </div>
 
           <!-- DEN -->
@@ -47,6 +47,9 @@
 
               <!-- CISLO DNA V ROKU -->
               <div class="denVRoku">{{ generate[2].at(den - 7 + strana * 7 - 1) }}</div>
+
+              <!-- PRAZDNINY -->
+              <div class="prazdniny">{{ generate[11].at(den - 7 + strana * 7 - 1) }}</div>
             </div>
           </div>
 
@@ -127,17 +130,26 @@ export default {
   font-weight: bold;
   letter-spacing: 0.3mm;
 
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  column-gap: 3.5cm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  margin-bottom: 2mm;
+  margin-top: 0.3cm;
+  margin-bottom: 0.3cm;
 
   text-align: center;
 }
-.tyzden_info div {
+.tyzden_info .div1 {
   background-color: #051650;
-  padding: 0.3mm;
+  padding: 0.3mm 2mm 0.6mm 2mm;
+  border-radius: 0.7mm;
+  min-width: 5.5cm;
+}
+.tyzden_info .div2 {
+  background-color: #051650;
+  padding: 0.3mm 2mm 0.6mm 2mm;
+  border-radius: 0.7mm;
+  min-width: 3cm;
 }
 
 /* CAST TYZDEN */
@@ -158,7 +170,7 @@ export default {
   background-color: #0070c0;
   border-top: 1mm solid white;
 
-  font-size: 250%;
+  font-size: 230%;
   font-family: system-ui;
   font-weight: bold;
   color: white;
@@ -179,11 +191,11 @@ export default {
 
   display: grid;
   grid-template-columns: 22% 68% 10%;
-  grid-template-rows: 25% 65% 10%;
+  grid-template-rows: 23% 52% 25%;
   max-width: 100%;
 }
 .menoDna {
-  color: rgb(49, 49, 49);
+  color: #313131;
   padding-top: 0.24em;
   padding-left: 0.2em;
   font-size: 172%;
@@ -206,13 +218,13 @@ export default {
   padding-right: 1mm;
 }
 .dianie > * {
-  grid-row: 1/4;
+  grid-row: 1/2;
 
   padding: 0.8mm 1.5mm;
   border-radius: 1mm;
   margin-top: 0.5mm;
 
-  max-width: 7.3cm;
+  max-width: 8cm;
   width: max-content;
   display: block;
   clear: right;
@@ -227,15 +239,32 @@ export default {
 }
 .vyrociaSvadby {
   background-color: #0070c0;
-  color: yellow;
+  color: #fff200;
 }
 .vyrociaUmrtia {
   background-color: rgb(49, 49, 49);
   color: white;
 }
 .mena {
-  background-color: yellow;
+  background-color: #fff200;
   color: black;
+}
+.prazdniny {
+  grid-row: 3;
+  grid-column: 1/3;
+  background-color: rgb(1, 168, 1);
+  color: white;
+
+  padding: 0.8mm 1.5mm;
+  border-radius: 1mm;
+  margin: auto 0 0.5mm 0.5mm;
+  height: 1rem;
+  width: max-content;
+  display: block;
+  clear: right;
+}
+.prazdniny:empty {
+  display: none;
 }
 
 .vikend .info {
@@ -247,15 +276,21 @@ export default {
 
 /* CAST FOTKA */
 .fotka {
-  background-color: rgb(83, 153, 153);
-
   aspect-ratio: 4/3;
   object-fit: cover;
+  width: 100%;
+  max-width: 15cm;
+  padding-bottom: 3mm;
+  border-bottom: 0.6mm dashed #b4b4b4;
 }
 
 /* CAST POZNAMKY */
+.poznamky {
+  margin-top: 3mm;
+  border-top: 0.6mm dashed #b4b4b4;
+}
 .poznamky img {
-  width: 8mm;
+  width: 6mm;
   margin: 1.5mm;
   opacity: 0.5;
 }
