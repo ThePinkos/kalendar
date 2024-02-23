@@ -2,59 +2,118 @@
   <div id="mainfull">
     <input type="number" id="vyskaDna" v-model="height" />
     <div class="main">
-      <div class="strana uvodna">Rok {{ generate[6].at(10) }}</div>
+      <div class="dvojstrana" v-for="dvojstrana in 28" :key="dvojstrana">
+        <div class="strana uvodna" v-if="dvojstrana === 1">Rok {{ generate[6].at(10) }}</div>
 
-      <div class="strana" v-for="strana in 55" :key="strana">
-        <!-- FOTKA -->
-        <img class="fotka" src="../assets/testimg.jpg" alt="fotka" />
+        <div class="strana" v-if="dvojstrana !== 1">
+          <!-- FOTKA -->
+          <img class="fotka" src="../assets/testimg.jpg" alt="fotka" />
 
-        <!-- TYZDEN -->
-        <div class="tyzden">
-          <div class="tyzden_info">
-            <div class="div1">{{ generate[4].at(strana - 1) }} {{ generate[6].at(strana - 1) }}</div>
-            <div class="div2">{{ generate[3].at((strana - 1) * 7) }}. týždeň</div>
-          </div>
-
-          <!-- DEN -->
-          <div class="den" :class="{ vikend: den === 6 || den === 7 }" v-for="den in 7" :key="den" :style="{ height: `${height}cm` }">
-            <!-- DATUM CAST -->
-            <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined }">
-              {{ generate[0].at(den - 7 + strana * 7 - 1) }}
+          <!-- TYZDEN -->
+          <div class="tyzden">
+            <div class="tyzden_info">
+              <div class="div1">{{ generate[4].at(dvojstrana - 1 - 1) }} {{ generate[6].at(dvojstrana - 1 - 1) }}</div>
+              <div class="div2">{{ generate[3].at((dvojstrana - 1 - 1) * 7) }}. týždeň</div>
             </div>
 
-            <!-- INFO CAST -->
-            <div class="info" :style="{ borderBottom: den === 6 ? '0' : undefined }">
-              <div class="menoDna">{{ generate[1].at(den - 7 + strana * 7 - 1) }}</div>
-
-              <!-- SVIATKY, NARODENINY, MENINY, ATD. -->
-              <div class="dianie">
-                <div class="sviatky">
-                  {{ generate[7].at(den - 7 + strana * 7 - 1) }}
-                </div>
-                <div class="vyrociaSvadby">
-                  {{ generate[8].at(den - 7 + strana * 7 - 1) }}
-                </div>
-                <div class="vyrociaUmrtia">
-                  {{ generate[9].at(den - 7 + strana * 7 - 1) }}
-                </div>
-                <div class="mena">
-                  {{ generate[10].at(den - 7 + strana * 7 - 1) }}
-                </div>
+            <!-- DEN -->
+            <div class="den" :class="{ vikend: den === 6 || den === 7 }" v-for="den in 7" :key="den" :style="{ height: `${height}cm` }">
+              <!-- DATUM CAST -->
+              <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined }">
+                {{ generate[0].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
               </div>
 
-              <!-- MENINY V TEN DEN -->
-              <div class="meniny">{{ generate[5].at(den - 7 + strana * 7 - 1) }}</div>
+              <!-- INFO CAST -->
+              <div class="info" :style="{ borderBottom: den === 6 ? '0' : undefined }">
+                <div class="menoDna">{{ generate[1].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}</div>
 
-              <!-- CISLO DNA V ROKU -->
-              <div class="denVRoku">{{ generate[2].at(den - 7 + strana * 7 - 1) }}</div>
+                <!-- SVIATKY, NARODENINY, MENINY, ATD. -->
+                <div class="dianie">
+                  <div class="sviatky">
+                    {{ generate[7].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
+                  </div>
+                  <div class="vyrociaSvadby">
+                    {{ generate[8].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
+                  </div>
+                  <div class="vyrociaUmrtia">
+                    {{ generate[9].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
+                  </div>
+                  <div class="mena">
+                    {{ generate[10].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
+                  </div>
+                </div>
 
-              <!-- PRAZDNINY -->
-              <div class="prazdniny">{{ generate[11].at(den - 7 + strana * 7 - 1) }}</div>
+                <!-- MENINY V TEN DEN -->
+                <div class="meniny">{{ generate[5].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}</div>
+
+                <!-- CISLO DNA V ROKU -->
+                <div class="denVRoku">{{ generate[2].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}</div>
+
+                <!-- PRAZDNINY -->
+                <div class="prazdniny">{{ generate[11].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}</div>
+              </div>
             </div>
-          </div>
 
-          <!-- POZNAMKY -->
-          <div class="poznamky"><img src="../assets/pero.svg" alt="" /></div>
+            <!-- POZNAMKY -->
+            <div class="poznamky"><img src="../assets/pero.svg" alt="" /></div>
+          </div>
+        </div>
+        <!-- 
+
+dalsia strana
+ -->
+        <div class="strana pravaStrana">
+          <!-- FOTKA -->
+          <img class="fotka" src="../assets/testimg.jpg" alt="fotka" />
+
+          <!-- TYZDEN -->
+          <div class="tyzden">
+            <div class="tyzden_info">
+              <div class="div1">{{ generate[4].at(dvojstrana - 1 + 27) }} {{ generate[6].at(dvojstrana - 1 + 27) }}</div>
+              <div class="div2">{{ generate[3].at((dvojstrana - 1 + 27) * 7) }}. týždeň</div>
+            </div>
+
+            <!-- DEN -->
+            <div class="den" :class="{ vikend: den === 6 || den === 7 }" v-for="den in 7" :key="den" :style="{ height: `${height}cm` }">
+              <!-- DATUM CAST -->
+              <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined }">
+                {{ generate[0].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+              </div>
+
+              <!-- INFO CAST -->
+              <div class="info" :style="{ borderBottom: den === 6 ? '0' : undefined }">
+                <div class="menoDna">{{ generate[1].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}</div>
+
+                <!-- SVIATKY, NARODENINY, MENINY, ATD. -->
+                <div class="dianie">
+                  <div class="sviatky">
+                    {{ generate[7].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+                  </div>
+                  <div class="vyrociaSvadby">
+                    {{ generate[8].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+                  </div>
+                  <div class="vyrociaUmrtia">
+                    {{ generate[9].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+                  </div>
+                  <div class="mena">
+                    {{ generate[10].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+                  </div>
+                </div>
+
+                <!-- MENINY V TEN DEN -->
+                <div class="meniny">{{ generate[5].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}</div>
+
+                <!-- CISLO DNA V ROKU -->
+                <div class="denVRoku">{{ generate[2].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}</div>
+
+                <!-- PRAZDNINY -->
+                <div class="prazdniny">{{ generate[11].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}</div>
+              </div>
+            </div>
+
+            <!-- POZNAMKY -->
+            <div class="poznamky"><img src="../assets/pero.svg" alt="" /></div>
+          </div>
         </div>
       </div>
     </div>
@@ -80,25 +139,19 @@ export default {
 </script>
 
 <style scoped>
-/* CAST STRANA */
+/* CAST dvojstrana */
 
 #mainfull {
   display: grid;
   justify-content: center;
 }
 
-.main {
+.dvojstrana {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-auto-flow: dense;
-}
-
-.main > div:nth-child(-n + 28) {
-  grid-column: 1;
-}
-
-.main > div:nth-child(n + 29) {
-  grid-column: 2;
+  page-break-after: always;
+  height: 40cm;
+  width: 297mm;
 }
 
 .uvodna {
@@ -116,10 +169,12 @@ export default {
   font-family: system-ui;
 
   padding: 20mm 10mm 0 10mm;
+  border-right: 0.2mm dashed #b4b4b4;
 
-  height: 40cm;
-
-  outline: 0.6mm dashed black;
+  height: 100%;
+}
+.pravaStrana {
+  border-left: 0.2mm dashed #b4b4b4;
 }
 
 /* CAST MESIAC INFO */
@@ -141,7 +196,7 @@ export default {
 }
 .tyzden_info .div1 {
   background-color: #051650;
-  padding: 0.3mm 2mm 0.6mm 2mm;
+  padding: 0.3mm 10mm 0.6mm 10mm;
   border-radius: 0.7mm;
   min-width: 5.5cm;
 }
@@ -296,8 +351,9 @@ export default {
 }
 
 @media print {
-  .strana {
-    height: calc(100cqmax - 2cm);
+  .dvojstrana {
+    page-break-after: always;
+    height: auto;
   }
   input {
     display: none;
