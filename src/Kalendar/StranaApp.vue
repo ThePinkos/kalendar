@@ -3,9 +3,9 @@
     <input type="number" id="vyskaDna" v-model="height" />
     <div class="main">
       <div class="dvojstrana" v-for="dvojstrana in 28" :key="dvojstrana">
-        <div class="strana uvodna" v-if="dvojstrana === 1">Rok {{ generate[6].at(10) }}</div>
+        <div class="strana uvodna lavastrana" v-if="dvojstrana === 1">Rok {{ generate[6].at(10) }}</div>
 
-        <div class="strana" v-if="dvojstrana !== 1">
+        <div class="strana lavastrana" v-if="dvojstrana !== 1">
           <!-- FOTKA -->
           <img class="fotka" src="../assets/testimg.jpg" alt="fotka" />
 
@@ -40,6 +40,9 @@
                   </div>
                   <div class="mena">
                     {{ generate[10].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
+                  </div>
+                  <div class="medzDni">
+                    {{ generate[12].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
                   </div>
                 </div>
 
@@ -98,6 +101,9 @@ dalsia strana
                   <div class="mena">
                     {{ generate[10].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
                   </div>
+                  <div class="medzDni">
+                    {{ generate[12].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+                  </div>
                 </div>
 
                 <!-- MENINY V TEN DEN -->
@@ -149,9 +155,8 @@ export default {
 .dvojstrana {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  page-break-after: always;
-  height: 40cm;
   width: 297mm;
+  page-break-after: always;
 }
 
 .uvodna {
@@ -169,9 +174,9 @@ export default {
   font-family: system-ui;
 
   padding: 20mm 10mm 0 10mm;
+}
+.lavastrana {
   border-right: 0.2mm dashed #b4b4b4;
-
-  height: 100%;
 }
 .pravaStrana {
   border-left: 0.2mm dashed #b4b4b4;
@@ -269,7 +274,7 @@ export default {
   grid-column: 3;
   text-align: right;
   font-weight: bold;
-  color: rgb(49, 49, 49);
+  color: #313131;
   padding-right: 1mm;
 }
 .dianie > * {
@@ -289,7 +294,7 @@ export default {
 }
 
 .sviatky {
-  background-color: rgb(173, 11, 11);
+  background-color: #ad0b0b;
   color: white;
 }
 .vyrociaSvadby {
@@ -297,12 +302,16 @@ export default {
   color: #fff200;
 }
 .vyrociaUmrtia {
-  background-color: rgb(49, 49, 49);
+  background-color: #313131;
   color: white;
+}
+.medzDni {
+  background-color: #d89400;
+  color: #313131;
 }
 .mena {
   background-color: #fff200;
-  color: black;
+  color: #313131;
 }
 .prazdniny {
   grid-row: 3;
@@ -351,9 +360,11 @@ export default {
 }
 
 @media print {
+  .strana {
+    height: 39.9cm;
+  }
   .dvojstrana {
-    page-break-after: always;
-    height: auto;
+    max-height: 0;
   }
   input {
     display: none;

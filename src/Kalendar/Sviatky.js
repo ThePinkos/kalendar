@@ -166,3 +166,22 @@ export function prazdniny(pocetDni, year) {
 
   return prazdninyList
 }
+
+export function medzinarodneDni(pocetDni, year) {
+  const medzinarodneDniList = Array(pocetDni).fill(undefined)
+
+  const medzinarodneDniData = [
+    { M: 3, D: 8, name: 'Medzinárodný deň žien' },
+    { M: 3, D: 28, name: 'Deň učiteľov' },
+    { M: 5, D: 12, name: 'Deň matiek' },
+    { M: 6, D: 1, name: 'Medzinárodný deň detí' },
+    { M: 6, D: 16, name: 'Deň otcov' }
+  ]
+
+  medzinarodneDniData.forEach(({ M, D, name }) => {
+    const date = new Date(year, M - 1, D)
+    medzinarodneDniList[d(date)] = name
+  })
+
+  return medzinarodneDniList
+}
