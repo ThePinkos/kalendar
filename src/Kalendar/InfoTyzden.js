@@ -5,6 +5,7 @@ import { vyrociaSvadby } from './Sviatky.js'
 import { vyrociaUmrtia } from './Sviatky.js'
 import { prazdniny } from './Sviatky.js'
 import { medzinarodneDni } from './Sviatky.js'
+import { slnovraty } from './Sviatky.js'
 
 function doplnTzyden(x) {
   const mappings = { 1: 7, 2: 8, 3: 9, 4: 10, 5: 11, 6: 12, 0: 13 }
@@ -102,7 +103,7 @@ export function kalendar(year) {
     infoArray.push([dayNumberInMonth, weekdaySlovak, dayNumber, weekNumber])
   }
   infoArray = infoArray[0].map((_, index) => infoArray.map((arr) => arr[index]))
-  infoArray.push(getMonthName(year, start), generateArray(meniny, year), getYear(year), generateArray(sviatky, year), generateArray(vyrociaSvadby, year), generateArray(vyrociaUmrtia, year), generateArray(mena, year), generateArray(prazdniny, year), generateArray(medzinarodneDni, year))
+  infoArray.push(getMonthName(year, start), generateArray(meniny, year), getYear(year), generateArray(sviatky, year), generateArray(vyrociaSvadby, year), generateArray(vyrociaUmrtia, year), generateArray(mena, year), generateArray(prazdniny, year), generateArray(medzinarodneDni, year), generateArray(slnovraty, year))
 
   return infoArray
 }

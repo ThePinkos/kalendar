@@ -185,3 +185,23 @@ export function medzinarodneDni(pocetDni, year) {
 
   return medzinarodneDniList
 }
+
+export function slnovraty(pocetDni, year) {
+  const slnovratyList = Array(pocetDni).fill(undefined)
+
+  const slnovratyData = [
+    { M: 3, D: 20, name: 'Jarná rovnodennosť' },
+    { M: 3, D: 31, name: 'Zmena času (2:00-3:00)' },
+    { M: 6, D: 20, name: 'Letný slnovrát' },
+    { M: 9, D: 22, name: 'Jesenná rovnodennosť' },
+    { M: 10, D: 27, name: 'Zmena času (3:00-2:00)' },
+    { M: 12, D: 21, name: 'Zimný slnovrát' }
+  ]
+
+  slnovratyData.forEach(({ M, D, name }) => {
+    const date = new Date(year, M - 1, D)
+    slnovratyList[d(date)] = name
+  })
+
+  return slnovratyList
+}

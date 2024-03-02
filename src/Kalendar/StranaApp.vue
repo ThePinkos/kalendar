@@ -44,6 +44,9 @@
                   <div class="medzDni">
                     {{ generate[12].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
                   </div>
+                  <div class="slnovraty">
+                    {{ generate[13].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
+                  </div>
                 </div>
 
                 <!-- MENINY V TEN DEN -->
@@ -104,6 +107,9 @@ dalsia strana
                   <div class="medzDni">
                     {{ generate[12].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
                   </div>
+                  <div class="slnovraty">
+                    {{ generate[13].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+                  </div>
                 </div>
 
                 <!-- MENINY V TEN DEN -->
@@ -156,7 +162,6 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 297mm;
-  page-break-after: always;
 }
 
 .uvodna {
@@ -309,6 +314,11 @@ export default {
   background-color: #d89400;
   color: #313131;
 }
+.slnovraty {
+  background-color: #8d8d8d;
+  color: white;
+}
+
 .mena {
   background-color: #fff200;
   color: #313131;
@@ -364,7 +374,8 @@ export default {
     height: 39.9cm;
   }
   .dvojstrana {
-    max-height: 0;
+    page-break-after: always;
+    width: auto;
   }
   input {
     display: none;
