@@ -12,7 +12,7 @@ export function slnkoCalc(date) {
   const sunTimes = SunCalc.getTimes(today, zemSirka, zemDlzka)
 
   // Format the times in the Bratislava timezone (CET)
-  const formatTime = (date) => date.toLocaleTimeString('sk-SK', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Bratislava' })
+  const formatTime = (date) => date.toLocaleTimeString('sk-SK', { hour: 'numeric', minute: '2-digit', hour12: false, timeZone: 'Europe/Bratislava' })
 
   const sunrise = formatTime(sunTimes.sunrise)
   const solarNoon = formatTime(sunTimes.solarNoon)

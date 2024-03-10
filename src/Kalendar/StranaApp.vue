@@ -56,6 +56,9 @@
 
               <!-- PRAZDNINY -->
               <div class="prazdniny">{{ generate[12].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}</div>
+
+              <!-- SLNKO -->
+              <div class="slnko">{{ generate[4].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}</div>
             </div>
           </div>
 
@@ -115,6 +118,9 @@
 
               <!-- PRAZDNINY -->
               <div class="prazdniny">{{ generate[12].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}</div>
+
+              <!-- SLNKO -->
+              <div class="slnko">{{ generate[4].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}</div>
             </div>
           </div>
 
@@ -177,10 +183,10 @@ export default {
   height: 40cm;
 }
 .lavastrana {
-  border-right: 0.5mm dashed #b4b4b4;
+  border-right: 0.2mm dashed #b4b4b4;
 }
 .pravaStrana {
-  border-left: 0.5mm dashed #b4b4b4;
+  border-left: 0.2mm dashed #b4b4b4;
 }
 
 /* CAST MESIAC INFO */
@@ -278,6 +284,29 @@ export default {
   color: #313131;
   padding-right: 1mm;
 }
+.slnko {
+  display: grid;
+  grid-row: 2/4;
+  grid-column: 3;
+  justify-self: right;
+  align-self: self-end;
+
+  text-align: right;
+
+  height: min-content;
+  width: min-content;
+
+  padding: 1mm;
+  margin: 0 0.5mm 0.5mm 0;
+  border-radius: 1mm;
+
+  color: #000000;
+  font-weight: 500;
+  line-height: 3.7mm;
+  font-size: 115%;
+  background-image: linear-gradient(180deg, #fff200a6 1%, #2dd5ffaf 40%, #143ba7da);
+}
+
 .dianie > * {
   grid-row: 1/2;
 

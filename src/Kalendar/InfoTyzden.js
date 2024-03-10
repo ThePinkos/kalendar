@@ -100,7 +100,7 @@ export function kalendar(year) {
     var weekNumber = getWeekNumber(zaciatok)
     var dayNumber = getDayNumber(zaciatok)
     var dayNumberInMonth = getDayNumberInMonth(zaciatok)
-    var slnko = slnkoCalc(zaciatok)
+    var slnko = slnkoCalc(zaciatok).join(' ')
     infoArray.push([dayNumberInMonth, weekdaySlovak, dayNumber, weekNumber, slnko])
   }
   infoArray = infoArray[0].map((_, index) => infoArray.map((arr) => arr[index]))
