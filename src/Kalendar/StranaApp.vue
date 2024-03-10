@@ -302,8 +302,8 @@ export default {
 
   color: #000000;
   font-weight: 500;
-  line-height: 3.7mm;
-  font-size: 115%;
+  line-height: 4mm;
+  font-size: 110%;
   background-image: linear-gradient(180deg, #fff200a6 1%, #2dd5ffaf 40%, #143ba7da);
 }
 
