@@ -1,131 +1,125 @@
 <template>
   <div id="mainfull">
     <input type="number" id="vyskaDna" v-model="height" />
-    <div class="main">
-      <div class="dvojstrana" v-for="dvojstrana in 28" :key="dvojstrana">
-        <div class="strana uvodna lavastrana" v-if="dvojstrana === 1">Rok {{ generate[6].at(10) }}</div>
+    <div class="dvojstrana" v-for="dvojstrana in 28" :key="dvojstrana">
+      <div class="strana uvodna lavastrana" v-if="dvojstrana === 1">Rok {{ generate[7].at(10) }}</div>
 
-        <div class="strana lavastrana" v-if="dvojstrana !== 1">
-          <!-- FOTKA -->
-          <img class="fotka" src="../assets/testimg.jpg" alt="fotka" />
+      <div class="strana lavastrana" v-if="dvojstrana !== 1">
+        <!-- FOTKA -->
+        <img class="fotka" src="../assets/testimg.jpg" alt="fotka" />
 
-          <!-- TYZDEN -->
-          <div class="tyzden">
-            <div class="tyzden_info">
-              <div class="div1">{{ generate[4].at(dvojstrana - 1 - 1) }} {{ generate[6].at(dvojstrana - 1 - 1) }}</div>
-              <div class="div2">{{ generate[3].at((dvojstrana - 1 - 1) * 7) }}. týždeň</div>
-            </div>
-
-            <!-- DEN -->
-            <div class="den" :class="{ vikend: den === 6 || den === 7 }" v-for="den in 7" :key="den" :style="{ height: `${height}cm` }">
-              <!-- DATUM CAST -->
-              <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined }">
-                {{ generate[0].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
-              </div>
-
-              <!-- INFO CAST -->
-              <div class="info" :style="{ borderBottom: den === 6 ? '0' : undefined }">
-                <div class="menoDna">{{ generate[1].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}</div>
-
-                <!-- SVIATKY, NARODENINY, MENINY, ATD. -->
-                <div class="dianie">
-                  <div class="sviatky">
-                    {{ generate[7].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
-                  </div>
-                  <div class="vyrociaSvadby">
-                    {{ generate[8].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
-                  </div>
-                  <div class="vyrociaUmrtia">
-                    {{ generate[9].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
-                  </div>
-                  <div class="mena">
-                    {{ generate[10].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
-                  </div>
-                  <div class="medzDni">
-                    {{ generate[12].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
-                  </div>
-                  <div class="slnovraty">
-                    {{ generate[13].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
-                  </div>
-                </div>
-
-                <!-- MENINY V TEN DEN -->
-                <div class="meniny">{{ generate[5].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}</div>
-
-                <!-- CISLO DNA V ROKU -->
-                <div class="denVRoku">{{ generate[2].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}</div>
-
-                <!-- PRAZDNINY -->
-                <div class="prazdniny">{{ generate[11].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}</div>
-              </div>
-            </div>
-
-            <!-- POZNAMKY -->
-            <div class="poznamky"><img src="../assets/pero.svg" alt="" /></div>
+        <!-- TYZDEN -->
+        <div class="tyzden">
+          <div class="tyzden_info">
+            <div class="div1">{{ generate[5].at(dvojstrana - 1 - 1) }} {{ generate[7].at(dvojstrana - 1 - 1) }}</div>
+            <div class="div2">{{ generate[3].at((dvojstrana - 1 - 1) * 7) }}. týždeň</div>
           </div>
+
+          <!-- DEN -->
+          <div class="den" :class="{ vikend: den === 6 || den === 7 }" v-for="den in 7" :key="den" :style="{ height: `${height}cm` }">
+            <!-- DATUM CAST -->
+            <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined }">
+              {{ generate[0].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
+            </div>
+
+            <!-- INFO CAST -->
+            <div class="info" :style="{ borderBottom: den === 6 ? '0' : undefined }">
+              <div class="menoDna">{{ generate[1].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}</div>
+
+              <!-- SVIATKY, NARODENINY, MENINY, ATD. -->
+              <div class="dianie">
+                <div class="sviatky">
+                  {{ generate[8].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
+                </div>
+                <div class="vyrociaSvadby">
+                  {{ generate[9].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
+                </div>
+                <div class="vyrociaUmrtia">
+                  {{ generate[10].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
+                </div>
+                <div class="mena">
+                  {{ generate[11].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
+                </div>
+                <div class="medzDni">
+                  {{ generate[13].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
+                </div>
+                <div class="slnovraty">
+                  {{ generate[14].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
+                </div>
+              </div>
+
+              <!-- MENINY V TEN DEN -->
+              <div class="meniny">{{ generate[6].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}</div>
+
+              <!-- CISLO DNA V ROKU -->
+              <div class="denVRoku">{{ generate[2].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}</div>
+
+              <!-- PRAZDNINY -->
+              <div class="prazdniny">{{ generate[12].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}</div>
+            </div>
+          </div>
+
+          <!-- POZNAMKY -->
+          <div class="poznamky"><img src="../assets/pero.svg" alt="" /></div>
         </div>
-        <!-- 
+      </div>
+      <div class="strana pravaStrana">
+        <!-- FOTKA -->
+        <img class="fotka" src="../assets/testimg.jpg" alt="fotka" />
 
-dalsia strana
- -->
-        <div class="strana pravaStrana">
-          <!-- FOTKA -->
-          <img class="fotka" src="../assets/testimg.jpg" alt="fotka" />
-
-          <!-- TYZDEN -->
-          <div class="tyzden">
-            <div class="tyzden_info">
-              <div class="div1">{{ generate[4].at(dvojstrana - 1 + 27) }} {{ generate[6].at(dvojstrana - 1 + 27) }}</div>
-              <div class="div2">{{ generate[3].at((dvojstrana - 1 + 27) * 7) }}. týždeň</div>
-            </div>
-
-            <!-- DEN -->
-            <div class="den" :class="{ vikend: den === 6 || den === 7 }" v-for="den in 7" :key="den" :style="{ height: `${height}cm` }">
-              <!-- DATUM CAST -->
-              <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined }">
-                {{ generate[0].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
-              </div>
-
-              <!-- INFO CAST -->
-              <div class="info" :style="{ borderBottom: den === 6 ? '0' : undefined }">
-                <div class="menoDna">{{ generate[1].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}</div>
-
-                <!-- SVIATKY, NARODENINY, MENINY, ATD. -->
-                <div class="dianie">
-                  <div class="sviatky">
-                    {{ generate[7].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
-                  </div>
-                  <div class="vyrociaSvadby">
-                    {{ generate[8].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
-                  </div>
-                  <div class="vyrociaUmrtia">
-                    {{ generate[9].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
-                  </div>
-                  <div class="mena">
-                    {{ generate[10].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
-                  </div>
-                  <div class="medzDni">
-                    {{ generate[12].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
-                  </div>
-                  <div class="slnovraty">
-                    {{ generate[13].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
-                  </div>
-                </div>
-
-                <!-- MENINY V TEN DEN -->
-                <div class="meniny">{{ generate[5].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}</div>
-
-                <!-- CISLO DNA V ROKU -->
-                <div class="denVRoku">{{ generate[2].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}</div>
-
-                <!-- PRAZDNINY -->
-                <div class="prazdniny">{{ generate[11].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}</div>
-              </div>
-            </div>
-
-            <!-- POZNAMKY -->
-            <div class="poznamky"><img src="../assets/pero.svg" alt="" /></div>
+        <!-- TYZDEN -->
+        <div class="tyzden">
+          <div class="tyzden_info">
+            <div class="div1">{{ generate[5].at(dvojstrana - 1 + 27) }} {{ generate[7].at(dvojstrana - 1 + 27) }}</div>
+            <div class="div2">{{ generate[3].at((dvojstrana - 1 + 27) * 7) }}. týždeň</div>
           </div>
+
+          <!-- DEN -->
+          <div class="den" :class="{ vikend: den === 6 || den === 7 }" v-for="den in 7" :key="den" :style="{ height: `${height}cm` }">
+            <!-- DATUM CAST -->
+            <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined }">
+              {{ generate[0].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+            </div>
+
+            <!-- INFO CAST -->
+            <div class="info" :style="{ borderBottom: den === 6 ? '0' : undefined }">
+              <div class="menoDna">{{ generate[1].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}</div>
+
+              <!-- SVIATKY, NARODENINY, MENINY, ATD. -->
+              <div class="dianie">
+                <div class="sviatky">
+                  {{ generate[8].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+                </div>
+                <div class="vyrociaSvadby">
+                  {{ generate[9].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+                </div>
+                <div class="vyrociaUmrtia">
+                  {{ generate[10].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+                </div>
+                <div class="mena">
+                  {{ generate[11].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+                </div>
+                <div class="medzDni">
+                  {{ generate[13].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+                </div>
+                <div class="slnovraty">
+                  {{ generate[14].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+                </div>
+              </div>
+
+              <!-- MENINY V TEN DEN -->
+              <div class="meniny">{{ generate[6].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}</div>
+
+              <!-- CISLO DNA V ROKU -->
+              <div class="denVRoku">{{ generate[2].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}</div>
+
+              <!-- PRAZDNINY -->
+              <div class="prazdniny">{{ generate[12].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}</div>
+            </div>
+          </div>
+
+          <!-- POZNAMKY -->
+          <div class="poznamky"><img src="../assets/pero.svg" alt="" /></div>
         </div>
       </div>
     </div>
@@ -179,12 +173,14 @@ export default {
   font-family: system-ui;
 
   padding: 20mm 10mm 0 10mm;
+
+  height: 40cm;
 }
 .lavastrana {
-  border-right: 0.2mm dashed #b4b4b4;
+  border-right: 0.5mm dashed #b4b4b4;
 }
 .pravaStrana {
-  border-left: 0.2mm dashed #b4b4b4;
+  border-left: 0.5mm dashed #b4b4b4;
 }
 
 /* CAST MESIAC INFO */
@@ -370,9 +366,6 @@ export default {
 }
 
 @media print {
-  .strana {
-    height: 39.9cm;
-  }
   .dvojstrana {
     page-break-after: always;
     width: auto;

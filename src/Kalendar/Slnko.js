@@ -1,21 +1,12 @@
 import SunCalc from 'suncalc'
 
-function d(date) {
-  var start = new Date(date.getFullYear(), 0, 0)
-  var diff = date - start + (start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000
-  var oneDay = 1000 * 60 * 60 * 24
-  var dayNumber = Math.floor(diff / oneDay)
-
-  return dayNumber - 1
-}
-
-export function slnko(zemSirka, zemDlzka) {
+export function slnkoCalc(date) {
   // Bratislava's coordinates
-  zemSirka = 49.2231
-  zemDlzka = 18.7394
+  var zemSirka = 49.2231
+  var zemDlzka = 18.7394
 
   // Get today's date
-  const today = new Date(2024, 7, 22)
+  const today = new Date(date)
 
   // Calculate sunrise, solar noon, and sunset
   const sunTimes = SunCalc.getTimes(today, zemSirka, zemDlzka)
@@ -27,9 +18,5 @@ export function slnko(zemSirka, zemDlzka) {
   const solarNoon = formatTime(sunTimes.solarNoon)
   const sunset = formatTime(sunTimes.sunset)
 
-  return sunrise
+  return [sunrise, solarNoon, sunset]
 }
-
-
-
-console.log(slnko())
