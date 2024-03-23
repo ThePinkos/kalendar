@@ -6,7 +6,7 @@
 
       <div class="strana lavastrana" v-if="dvojstrana !== 1">
         <!-- FOTKA -->
-        <img class="fotka" src="../assets/testimg.jpg" alt="fotka" />
+        <img class="fotka" src="../fotky/2.jpg" alt="fotka" />
 
         <!-- TYZDEN -->
         <div class="tyzden">
@@ -68,7 +68,7 @@
       </div>
       <div class="strana pravaStrana">
         <!-- FOTKA -->
-        <img class="fotka" src="../assets/testimg.jpg" alt="fotka" />
+        <img class="fotka" :src="'../fotky/' + dvojstrana + '.jpg'" alt="fotka" />
 
         <!-- TYZDEN -->
         <div class="tyzden">
@@ -143,7 +143,8 @@ export default {
   },
   data() {
     return {
-      height: 3
+      height: 3,
+      fotka: '2'
     }
   },
   props: ['id']
@@ -304,7 +305,7 @@ export default {
   font-weight: 500;
   line-height: 4mm;
   font-size: 110%;
-  background-image: linear-gradient(180deg, #fff200a6 1%, #2dd5ffaf 40%, #143ba7da);
+  background-image: linear-gradient(180deg, #c21d00 -10%, #fffb00 35% 70%, #0a2000 120%);
 }
 
 .dianie > * {
