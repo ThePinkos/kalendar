@@ -6,7 +6,7 @@
 
       <div class="strana lavastrana" v-if="dvojstrana !== 1">
         <!-- FOTKA -->
-        <img class="fotka" src="../fotky/2.jpg" alt="fotka" />
+        <img class="fotka" :src="`/fotky/` + (dvojstrana - 1) + `.jpg`" alt="fotka" />
 
         <!-- TYZDEN -->
         <div class="tyzden">
@@ -68,7 +68,7 @@
       </div>
       <div class="strana pravaStrana">
         <!-- FOTKA -->
-        <img class="fotka" :src="'../fotky/' + dvojstrana + '.jpg'" alt="fotka" />
+        <img class="fotka" :src="`../fotky/` + (dvojstrana + 27) + `.jpg`" alt="fotka" />
 
         <!-- TYZDEN -->
         <div class="tyzden">
@@ -143,8 +143,7 @@ export default {
   },
   data() {
     return {
-      height: 3,
-      fotka: '2'
+      height: 3
     }
   },
   props: ['id']
