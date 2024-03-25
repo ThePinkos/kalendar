@@ -245,9 +245,6 @@ export default {
 
   text-align: center;
 }
-.datum-red {
-  background-color: #ff0000;
-}
 .vikend .datum {
   background-color: #00b050;
 }
