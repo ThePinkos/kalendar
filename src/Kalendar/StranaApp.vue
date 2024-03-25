@@ -90,7 +90,7 @@
 
               <!-- SVIATKY, NARODENINY, MENINY, ATD. -->
               <div class="dianie">
-                <div class="sviatky" @sviatkyCreated="isSviatkyExists = true">
+                <div class="sviatky">
                   {{ generate[8].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
                 </div>
                 <div class="vyrociaSvadby">
