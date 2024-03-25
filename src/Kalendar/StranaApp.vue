@@ -18,8 +18,8 @@
           <!-- DEN -->
           <div class="den" :class="{ vikend: den === 6 || den === 7 }" v-for="den in 7" :key="den" :style="{ height: `${height}cm` }">
             <!-- DATUM CAST -->
-            <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined }">
-              {{ generate[0].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
+            <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined, backgroundColor: generate[8].at(den - 7 + (dvojstrana - 1) * 7 - 1) !== undefined ? 'red' : undefined }">
+              {{ generate[0].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
             </div>
 
             <!-- INFO CAST -->
@@ -80,7 +80,7 @@
           <!-- DEN -->
           <div class="den" :class="{ vikend: den === 6 || den === 7 }" v-for="den in 7" :key="den" :style="{ height: `${height}cm` }">
             <!-- DATUM CAST -->
-            <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined }">
+            <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined, backgroundColor: generate[8].at(den - 7 + (dvojstrana + 27) * 7 - 1) !== undefined ? 'red' : undefined}">
               {{ generate[0].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
             </div>
 
@@ -90,7 +90,7 @@
 
               <!-- SVIATKY, NARODENINY, MENINY, ATD. -->
               <div class="dianie">
-                <div class="sviatky">
+                <div class="sviatky" @sviatkyCreated="isSviatkyExists = true">
                   {{ generate[8].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
                 </div>
                 <div class="vyrociaSvadby">
@@ -137,6 +137,7 @@ import { kalendar } from './InfoTyzden.js'
 
 export default {
   computed: {
+    //zisti rok a vygeneruje podla toho kalendar
     generate() {
       return kalendar(this.id)
     }
@@ -243,6 +244,9 @@ export default {
   color: white;
 
   text-align: center;
+}
+.datum-red {
+  background-color: #ff0000;
 }
 .vikend .datum {
   background-color: #00b050;
