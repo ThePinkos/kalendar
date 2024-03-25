@@ -18,8 +18,8 @@
           <!-- DEN -->
           <div class="den" :class="{ vikend: den === 6 || den === 7 }" v-for="den in 7" :key="den" :style="{ height: `${height}cm` }">
             <!-- DATUM CAST -->
-            <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined, backgroundColor: generate[8].at(den - 7 + (dvojstrana - 1) * 7 - 1) !== undefined ? 'red' : undefined }">
-              {{ generate[0].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
+            <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined, backgroundColor: generate[8].at(den - 7 + (dvojstrana - 1) * 7 - 1) !== undefined ? '#e21414' : undefined }">
+              {{ generate[0].at(den - 7 + (dvojstrana - 1) * 7 - 1) }}
             </div>
 
             <!-- INFO CAST -->
@@ -80,7 +80,7 @@
           <!-- DEN -->
           <div class="den" :class="{ vikend: den === 6 || den === 7 }" v-for="den in 7" :key="den" :style="{ height: `${height}cm` }">
             <!-- DATUM CAST -->
-            <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined, backgroundColor: generate[8].at(den - 7 + (dvojstrana + 27) * 7 - 1) !== undefined ? 'red' : undefined}">
+            <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined, backgroundColor: generate[8].at(den - 7 + (dvojstrana + 27) * 7 - 1) !== undefined ? '#e21414' : undefined}">
               {{ generate[0].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
             </div>
 
@@ -325,7 +325,7 @@ export default {
 }
 
 .sviatky {
-  background-color: #ad0b0b;
+  background-color: #e21414;
   color: white;
 }
 .vyrociaSvadby {
@@ -338,7 +338,7 @@ export default {
 }
 .medzDni {
   background-color: #d89400;
-  color: #313131;
+  color: white;
 }
 .slnovraty {
   background-color: #8d8d8d;
