@@ -80,7 +80,7 @@
           <!-- DEN -->
           <div class="den" :class="{ vikend: den === 6 || den === 7 }" v-for="den in 7" :key="den" :style="{ height: `${height}cm` }">
             <!-- DATUM CAST -->
-            <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined, backgroundColor: generate[8].at(den - 7 + (dvojstrana + 27) * 7 - 1) !== undefined ? '#e21414' : undefined}">
+            <div class="datum" :style="{ borderBottom: den === 7 ? '1mm white solid' : undefined, backgroundColor: generate[8].at(den - 7 + (dvojstrana + 27) * 7 - 1) !== undefined ? '#e21414' : undefined }">
               {{ generate[0].at(den - 7 + (dvojstrana + 27) * 7 - 1) }}
             </div>
 
@@ -315,7 +315,7 @@ export default {
   border-radius: 1mm;
   margin-top: 0.5mm;
 
-  max-width: 8cm;
+  max-width: 7.1cm;
   width: max-content;
   display: block;
   clear: right;
