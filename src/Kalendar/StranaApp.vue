@@ -204,6 +204,8 @@ export default {
 
   margin-top: 0.3cm;
   margin-bottom: 0.3cm;
+  padding-top: 4.5mm;
+  border-top: 0.6mm dashed #b4b4b4;
 
   text-align: center;
 }
@@ -380,8 +382,7 @@ export default {
   object-fit: cover;
   width: 100%;
   max-width: 15cm;
-  padding-bottom: 3mm;
-  border-bottom: 0.6mm dashed #b4b4b4;
+  border-radius: 1mm;
 }
 
 /* CAST POZNAMKY */
